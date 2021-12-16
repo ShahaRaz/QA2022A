@@ -17,7 +17,7 @@ public class ReadExcl {
 
         //Create an object of File class to open xlsx file
 
-        File file = new File(filePath + "\\" + fileName);
+        File file = new File(filePath + "/" + fileName);
 
         //Create an object of FileInputStream class to read excel file
 

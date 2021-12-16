@@ -1,7 +1,6 @@
 package pkg1;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.After;
@@ -15,8 +14,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,11 +30,12 @@ public class SearchGoogleFromExl {
     private Map<String, Object> vars;
     private ReadExcl objExcelFile;
     JavascriptExecutor js;
+    private Logger logger = LoggerFactory.getLogger(SearchGoogleFromExl.class);
 
 
     @Before
     public void setUp() throws IOException {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\sagiz\\Downloads\\איכות תוכנה\\selenium\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", HelloTest.KEYS.CHROME_DRIVER_PATH);
         driver = new ChromeDriver();
         js = (JavascriptExecutor) driver;
         vars = new HashMap<>();
@@ -51,8 +55,6 @@ public class SearchGoogleFromExl {
 
     @Test
     public void simple() {
-        Logger logger = LogManager.getLogger(SearchGoogleFromExl.class);
-
         int rowCount = objExcelFile.getRowcount();
         Sheet thsSheet = objExcelFile.getsheet();
 
