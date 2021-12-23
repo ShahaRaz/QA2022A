@@ -1,11 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <appender name="LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+<!--        <file>Logs/Testlogs.log</file>-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %-5level --- [%thread] %-21logger : %msg%n</Pattern>
         </encoder>
-    </appender>
 
-    <root level="debug">
-        <appender-ref ref="STDOUT" />
-    </root>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>Logs/DatingApp-%d{yyyy-MM-dd_hh:mm:ss}.%i.log</fileNamePattern>
+            <maxFileSize>1MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10MB</totalSizeCap>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+    </appender>
+    <logger name="pkg1" level="TRACE" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="LOG_FILE"/>
+    </logger>
+
+<!--    <root level="debug">-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--        <appender-ref ref="LOG_FILE"/>-->
+<!--    </root>-->
 </configuration>

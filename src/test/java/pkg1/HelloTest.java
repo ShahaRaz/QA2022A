@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 
 public class HelloTest {
     public interface KEYS{
-        final String CHROME_DRIVER_PATH = "/Users/shaharraz/IdeaProjects/chromedriver";
+        final String CHROME_DRIVER_PATH = "C:\\Users\\sagiz\\Downloads\\איכות תוכנה\\selenium\\chromedriver_win32\\chromedriver.exe";
         final String CHROME_EXCEL_PATH = "/Users/shaharraz/IdeaProjects/QA2022A/references/Search queries.xls";
 
     }
