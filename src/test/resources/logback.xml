@@ -8,7 +8,7 @@
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>Logs/DatingApp-%d{yyyy-MM-dd_hh:mm:ss}.%i.log</fileNamePattern>
+            <fileNamePattern>Logs/DatingApp-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>1MB</maxFileSize>
             <maxHistory>30</maxHistory>
             <totalSizeCap>10MB</totalSizeCap>
