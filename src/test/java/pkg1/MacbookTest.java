@@ -113,8 +113,8 @@ public class MacbookTest {
             driver.findElement(By.cssSelector("#search > span > button")).click();
             try {
                 WebElement addToCart = driver.findElement(By.cssSelector("#content > div:nth-child(8) > div:nth-child(1) > div > div:nth-child(2) > div.button-group > button:nth-child(1)"));
-//                logger.info(String.format("Buying %f '%s'(s)", row.getCell(2).getNumericCellValue(), row.getCell(1).getStringCellValue()));
-                System.out.println("row = " + i + ", rowCount = " + rowCount + "DATAAA?? ::: SAGI ::: " + row.getCell(2).getNumericCellValue());
+                //logger.info(String.format("Buying %f '%s'(s)", row.getCell(2).getNumericCellValue(), row.getCell(1).getStringCellValue()));
+                logger.debug("row = " + i + ", rowCount = " + rowCount + "DATAAA?? ::: SAGI ::: " + row.getCell(2).getNumericCellValue());
                 for (int clicks = 0; clicks < row.getCell(2).getNumericCellValue(); clicks++)
                     addToCart.click();
             } catch (NoSuchElementException e) {
@@ -138,7 +138,7 @@ public class MacbookTest {
             amount_wgt.clear();
             amount_wgt.sendKeys("" + (--currentAmount));
             amount_wgt.sendKeys(Keys.ENTER);
-            goodNight(1);
+            goodNight(KEYS.DELAY_SHORT);
             amount_wgt = driver.findElement(By.cssSelector("#content > form > div > table > tbody > tr:nth-child(1) > td:nth-child(4) > div > input"));
         }
 
@@ -162,8 +162,13 @@ public class MacbookTest {
         driver.findElement(By.id("input-password")).sendKeys(password);
 
         // press login
-        driver.findElement(By.id("button-login")).click();
-        goodNight(1);
+        try {
+            driver.findElement(By.id("button-login")).click();
+        } catch (NoSuchElementException e) {
+            logger.warn("Can't find th button by ID, what a wonderful website :-)");
+            driver.findElement(By.cssSelector("#content > div > div:nth-child(2) > div > form > input")).click();
+        }
+        goodNight(KEYS.DELAY_SHORT);
 
         try {
             logger.debug("Trying to get the error message if the login failed");
